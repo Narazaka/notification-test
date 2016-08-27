@@ -9,8 +9,8 @@ function notificationStart() {
     var notification = new Notification('title', {
       body: (new Date()).toString(),
       vibrate: [200, 100, 200],
-      tag: 'a',
-      renotify: true,
+      // tag: 'a',
+      // renotify: true,
     });
   }, 5000);
 }
