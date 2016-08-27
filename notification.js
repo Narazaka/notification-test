@@ -18,7 +18,7 @@ function notificationStart() {
   if ('navigator' in window && navigator.serviceWorker) {
     p.textContent = 'Notification start sw';
     navigator.serviceWorker.register('empty.js'); // dummy worker
-    navigator.serviceWorker.ready.then(function(registraqtion) {
+    navigator.serviceWorker.ready.then(function(registration) {
       setInterval(function() {
         try {
           registration.showNotification(title, options());
