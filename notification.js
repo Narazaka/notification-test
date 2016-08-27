@@ -1,6 +1,7 @@
 var notificationStarted = false;
 
 function notificationStart() {
+  p.textContent = 'Notification start';
   if (notificationStarted) return;
   notificationStarted = true;
   setInterval(function() {
@@ -26,6 +27,7 @@ window.addEventListener('load', function() {
       notificationStart();
     }else{
       document.getElementsByTagName('button')[0].addEventListener('click', function() {
+        p.textContent = 'Notification request';
         Notification.requestPermission(function(permission) {
           if (permission === 'granted') notificationStart();
         });
