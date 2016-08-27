@@ -1,18 +1,34 @@
 var notificationStarted = false;
 
+var title = 'title';
+function options() {
+  return {
+    body: (new Date()).toString(),
+    vibrate: [200, 100, 200],
+    // tag: 'a',
+    // renotify: true,
+  };
+}
+
 function notificationStart() {
   var p = document.getElementsByTagName('p')[0];
   p.textContent = 'Notification start';
   if (notificationStarted) return;
   notificationStarted = true;
+  if ('navigator' in window && navigator.serviceWorker) {
+    navigator.serviceWorker.ready.then(function(registraqtion) {
+      setInterval(function() {
+        try {
+          ServiceWorkerRegistration.showNotification(title, options());
+        } catch (error) {
+          p.textContent = "" + error;
+        }
+      }, 5000);
+    });
+  }
   setInterval(function() {
     try {
-      var notification = new Notification('title', {
-        body: (new Date()).toString(),
-        vibrate: [200, 100, 200],
-        // tag: 'a',
-        // renotify: true,
-      });
+      var notification = new Notification(title, options());
     } catch (error) {
       p.textContent = "" + error;
     }
