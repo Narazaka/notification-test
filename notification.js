@@ -5,8 +5,8 @@ function options() {
   return {
     body: (new Date()).toString(),
     vibrate: [200, 100, 200],
-    // tag: 'a',
-    // renotify: true,
+    tag: 'a',
+    renotify: true,
   };
 }
 
