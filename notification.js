@@ -21,7 +21,7 @@ function notificationStart() {
     navigator.serviceWorker.ready.then(function(registraqtion) {
       setInterval(function() {
         try {
-          ServiceWorkerRegistration.showNotification(title, options());
+          registration.showNotification(title, options());
         } catch (error) {
           p.textContent = "" + error;
         }
