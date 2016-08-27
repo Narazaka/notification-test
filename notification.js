@@ -1,6 +1,7 @@
 var notificationStarted = false;
 
 function notificationStart() {
+  var p = document.getElementsByTagName('p')[0];
   p.textContent = 'Notification start';
   if (notificationStarted) return;
   notificationStarted = true;
