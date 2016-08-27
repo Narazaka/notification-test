@@ -17,9 +17,7 @@ function notificationStart() {
   notificationStarted = true;
   if ('navigator' in window && navigator.serviceWorker) {
     p.textContent = 'Notification start sw';
-    var blob = new Blob(['']);
-    var url = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(url); // dummy worker
+    navigator.serviceWorker.register('empty.js'); // dummy worker
     navigator.serviceWorker.ready.then(function(registraqtion) {
       setInterval(function() {
         try {
