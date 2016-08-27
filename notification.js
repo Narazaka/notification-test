@@ -6,12 +6,16 @@ function notificationStart() {
   if (notificationStarted) return;
   notificationStarted = true;
   setInterval(function() {
-    var notification = new Notification('title', {
-      body: (new Date()).toString(),
-      vibrate: [200, 100, 200],
-      // tag: 'a',
-      // renotify: true,
-    });
+    try {
+      var notification = new Notification('title', {
+        body: (new Date()).toString(),
+        vibrate: [200, 100, 200],
+        // tag: 'a',
+        // renotify: true,
+      });
+    } catch (error) {
+      p.textContent = "" + error;
+    }
   }, 5000);
 }
 
