@@ -14,8 +14,14 @@ function notificationStart() {
 }
 
 window.addEventListener('load', function() {
-  if ('webkitNotifications' in window) Notification = webkitNotifications;
+  var p = document.createElement('p');
+  p.textContent = 'no';
+  if ('webkitNotifications' in window) {
+    p.textContent = 'webkitNotifications';
+    Notification = webkitNotifications;
+  }
   if ('Notification' in window) {
+    p.textContent = 'Notification';
     if (Notification.permission === "granted") {
       notificationStart();
     }else{
@@ -26,4 +32,5 @@ window.addEventListener('load', function() {
       });
     }
   }
+  document.getElementsByTagName('body')[0].appendChild(p);
 });
