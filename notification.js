@@ -17,6 +17,7 @@ function notificationStart() {
 
 window.addEventListener('load', function() {
   var p = document.createElement('p');
+  document.getElementsByTagName('body')[0].appendChild(p);
   p.textContent = 'no';
   if ('webkitNotifications' in window) {
     p.textContent = 'webkitNotifications';
@@ -35,5 +36,4 @@ window.addEventListener('load', function() {
       });
     }
   }
-  document.getElementsByTagName('body')[0].appendChild(p);
 });
