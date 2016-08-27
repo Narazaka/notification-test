@@ -15,7 +15,8 @@ function notificationStart() {
   p.textContent = 'Notification start';
   if (notificationStarted) return;
   notificationStarted = true;
-  if ('navigator' in window && navigator.serviceWorker) {
+  if ('ServiceWorkerRegistration' in window && ServiceWorkerRegistration.showNotification) {
+    p.textContent = 'Notification start sw';
     navigator.serviceWorker.ready.then(function(registraqtion) {
       setInterval(function() {
         try {
@@ -25,14 +26,16 @@ function notificationStart() {
         }
       }, 5000);
     });
+  } else {
+    p.textContent = 'Notification start normal';
+    setInterval(function() {
+      try {
+        var notification = new Notification(title, options());
+      } catch (error) {
+        p.textContent = "" + error;
+      }
+    }, 5000);
   }
-  setInterval(function() {
-    try {
-      var notification = new Notification(title, options());
-    } catch (error) {
-      p.textContent = "" + error;
-    }
-  }, 5000);
 }
 
 window.addEventListener('load', function() {
